@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MVCLoginAPI2.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,15 @@ namespace MVCLoginAPI2
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+
+            var builder = new ConfigurationBuilder()
+            .SetBasePath(env.ContentRootPath)
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -24,6 +31,12 @@ namespace MVCLoginAPI2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            // Add functionality to inject IOptions<T>
+            services.AddOptions();
+
+            // Add our Config object so it can be injected
+            services.Configure<MyOptions>(Configuration.GetSection("AppSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

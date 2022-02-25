@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "Cadastro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Cadastro</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6 col-sm-10 align-self-center mx-auto">
+        <form method="post">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="user">Nome: </span>
+                </div>
+                <input type="text" class="form-control" aria-describedby="user" name="user" />
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="password">Senha: </span>
+                </div>
+                <input type="password" class="form-control" aria-describedby="password" name="password" />
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="email">E-mail: </span>
+                </div>
+                <input type="text" class="form-control" aria-describedby="email" name="email" />
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="datadenascimento">Data de Nascimento: </span>
+                </div>
+                <input type="date" class="form-control" aria-describedby="datadenascimento" name="datadenascimento" />
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="termos">Termos: </span>
+                </div>
+                <input type="checkbox" class="form-control" aria-describedby="termos" name="termos" />
+            </div>
+            <div class="text-right">
+                <button type="submit" class="btn btn-success">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

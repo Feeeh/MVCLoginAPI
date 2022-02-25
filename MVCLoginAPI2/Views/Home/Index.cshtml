@@ -1,8 +1,81 @@
-﻿@{
+﻿@model List<Usuario>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
+<h1>Usuários</h1>
+
+<hr />
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Senha</th>
+                <th>Data de Nascimento</th>
+                <th>Data de Criação</th>
+                <th>Termos</th>
+                <td></td>
+                <td></td>
+            </tr>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td class="align-middle">@obj.Id</td>
+                    <td class="align-middle">@obj.User</td>
+                    <td class="align-middle">@obj.Email</td>
+                    <td class="align-middle">@obj.Password</td>
+                    <td class="align-middle">@obj.DataDeNascimento</td>
+                    <td class="align-middle">@obj.DataDeCriacao</td>
+                    <td class="align-middle">@obj.Termos</td>
+                    <td class="align-middle">@Html.ActionLink("Editar", "Atualizar", new { id = obj.Id })</td>
+                    <td>
+                        <button type="button" class="btn btn-danger text-white remover" data-id="@obj.Id">
+                            Remover
+                        </button>
+                    </td>
+                </tr>
+            }
+        </thead>
+    </table>
 </div>
+
+<div class="modal fade" id="remover" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-black-50" id="exampleModalLabel">Remover Usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span id="message-text">Teste</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary text-white" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-danger text-white remover-btn">Remover</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $(".remover").click(function () {
+                var id = $(this).attr("data-id")
+                var modal = $("#remover")
+                modal.modal()
+                modal.find('#message-text').text('Você realmente deseja remover o usuário com o ID ' + id + '?')
+                    $(".remover-btn").click(function () {
+                    window.location.href = '@Url.Action("Remover")/' + id
+                })
+            })
+        })
+    </script>
+}

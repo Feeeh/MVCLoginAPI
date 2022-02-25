@@ -1,0 +1,56 @@
+﻿@model Usuario
+
+@{
+    ViewData["Title"] = "Atualizar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Atualizar Usuário</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6 col-sm-10 align-self-center mx-auto">
+        <form method="post">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="Id">ID: </span>
+                </div>
+                <input type="number" class="form-control" aria-describedby="Id" name="Id" asp-for="Id" disabled />
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="User">Usuario: </span>
+                </div>
+                <input type="text" class="form-control" aria-describedby="User" name="User" asp-for="User" />
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="Email">E-mail: </span>
+                </div>
+                <input type="text" class="form-control" aria-describedby="Email" name="Email" asp-for="Email" />
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="Password">Senha: </span>
+                </div>
+                <input type="text" class="form-control" aria-describedby="Password" name="Password" asp-for="Password" />
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="datadenascimento">Data de Nascimento: </span>
+                </div>
+                <input type="date" class="form-control" aria-describedby="datadenascimento" name="datadenascimento" asp-for="DataDeNascimento" />
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="termos">Termos: </span>
+                </div>
+                <input type="checkbox" class="form-control" aria-describedby="termos" name="termos" asp-for="Termos" />
+            </div>
+            <div class="text-right">
+                <button type="submit" class="btn btn-success">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
